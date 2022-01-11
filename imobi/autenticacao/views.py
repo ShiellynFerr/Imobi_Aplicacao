@@ -21,6 +21,15 @@ def cadastro (request):
 
     if user.exists() :
       return redirect('/auth/cadastro') 
+    
+    try:
+      user = User(username = username, email = email, password = senha) #instancia de usuario
+
+      #salvando no banco de dados
+      user.save()
+      return redirect('/auth/logar') #redirecionando para a pagina de login
+    except:
+      return redirect('/auth/cadastro') #caso de algum erro, redireciona para a pagina de cadastro
 
   return(HttpResponse)
 
