@@ -19,6 +19,7 @@ class DiasVisita(models.Model):
     def str(self) -> str:
         return self.dia
 
+
 class Horario(models.Model):
     horario = models.TimeField()
 
