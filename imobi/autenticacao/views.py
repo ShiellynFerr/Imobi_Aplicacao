@@ -3,14 +3,14 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User # importando tabela usuario
 from django.contrib import messages
 from django.contrib.messages import constants
-from django.contrib import auth
+from django.contrib import auth #modulo de autenticação
 
 
  #irá retornar uma response = aquilo que é exibido para o usuário
 def cadastro(request):
     if request.method == "GET":
         if request.user.is_authenticated:
-            return redirect('/')
+           return redirect('/')
         return render(request, 'cadastro.html')
     elif request.method == "POST":
         username = request.POST.get('username')
@@ -44,8 +44,8 @@ def logar (request):
         return redirect('/')
     return render(request, 'login.html')
   elif request.method == "POST":
-    username = request.POST.get(username)
-    senha= request.POST.get(senha)
+    username = request.POST.get('username')
+    senha= request.POST.get('senha')
 
     usuario = auth.authenticate(username=username, password=senha)
 
@@ -55,3 +55,7 @@ def logar (request):
     else:
       auth.login(request,usuario)
       return redirect('/')
+
+def sair ( request):
+    auth.logout(request)
+    return redirect('auth/logar')
