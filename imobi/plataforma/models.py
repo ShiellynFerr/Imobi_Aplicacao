@@ -4,26 +4,26 @@ from django.contrib.auth.models import User
 class Imagem(models.Model):
     img = models.ImageField(upload_to='img')
 
-    def str(self) -> str:
+    def __str__ (self):
         return self.img.url
 
 class Cidade(models.Model):
     nome = models.CharField(max_length=30)
 
-    def str(self) -> str:
+    def __str__(self):
         return self.nome
 
 class DiasVisita(models.Model):
     dia = models.CharField(max_length=20)
 
-    def str(self) -> str:
+    def __str__(self):
         return self.dia
 
 
 class Horario(models.Model):
     horario = models.TimeField()
 
-    def str(self) -> str:
+    def __str__(self):
         return str(self.horario)
 
 class Imovei(models.Model):
@@ -46,7 +46,7 @@ class Imovei(models.Model):
     dias_visita = models.ManyToManyField(DiasVisita)
     horarios = models.ManyToManyField(Horario)
 
-    def str(self) -> str:
+    def __str__(self):
         return self.rua
 
 class Visitas(models.Model):
@@ -68,6 +68,6 @@ class Visitas(models.Model):
     status = models.CharField(max_length=1, choices=choices_status, default="A")
 
 
-    def str(self) -> str:
+    def __str__(self):
         return self.usuario.username       
 
