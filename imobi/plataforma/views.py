@@ -30,5 +30,6 @@ def home(request):
 
 def imovel(request, id):
     imovel = get_object_or_404(Imovei, id=id)
+    sugestoes = Imovei.objects.filter(cidade=imovel.cidade).exclude(id=id)[:2]
     print(imovel)
-    return render(request, 'imovel.html', {'imovel': imovel, 'sugestoes': sugestoes, 'id': id})
+    return render(request, 'imovel.html', {'imovel': imovel, 'sugestoes': sugestoes , 'id': id})
